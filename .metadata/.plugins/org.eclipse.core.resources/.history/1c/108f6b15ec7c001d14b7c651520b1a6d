@@ -1,0 +1,58 @@
+package com.masai.app.Module;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Cab {
+ 
+	         
+	@Id
+	@GeneratedValue(strategy =GenerationType.AUTO )
+	private Integer cabid;
+	private String carType;
+	private Double perKmRate;
+	public Cab(Integer cabid, String carType, Double perKmRate) {
+		super();
+		this.cabid = cabid;
+		this.carType = carType;
+		this.perKmRate = perKmRate;
+	}
+	public Cab() {
+		super();
+	}
+	public Cab(String carType, Double perKmRate) {
+		super();
+		this.carType = carType;
+		this.perKmRate = perKmRate;
+	}
+	public Integer getCabid() {
+		return cabid;
+	}
+	public void setCabid(Integer cabid) {
+		this.cabid = cabid;
+	}
+	public String getCarType() {
+		return carType;
+	}
+	public void setCarType(String carType) {
+		this.carType = carType;
+	}
+	public Double getPerKmRate() {
+		return perKmRate;
+	}
+	public void setPerKmRate(Double perKmRate) {
+		this.perKmRate = perKmRate;
+	}
+	@Override
+	public String toString() {
+		return "Cab [cabid=" + cabid + ", carType=" + carType + ", perKmRate=" + perKmRate + "]";
+	}
+	
+	
+	
+	
+	 
+}

@@ -1,0 +1,52 @@
+package com.masai.app.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.masai.app.Exception.ProductException;
+import com.masai.app.Module.Product;
+import com.masai.app.Repo.ProductRepo;
+
+@Service
+public class ProductServiceImpl implements ProductService  {
+
+	@Autowired
+	private ProductRepo repo;
+	
+	
+	@Override
+	public Product insertProduct(Product product) {
+	    
+		Product product2= repo.save(product);
+		
+		return product2;
+	}
+
+	@Override
+	public Product findProduct(Integer productId) throws ProductException {
+     
+	 Optional<Product> opt=repo.findById(productId);
+		
+	 if(opt.isPresent()) {
+		 
+		 Product  product=opt.get();
+			return product;
+	 }
+	 else {
+		 
+		 throw new ProductException("Product IS Not Found Out By Given Id");
+	 }
+	}
+
+	@Override
+	public List<Product> getAllProduct() {
+
+		List<Product>  list=repo.findAll();
+		 
+		return list;
+	}
+
+}

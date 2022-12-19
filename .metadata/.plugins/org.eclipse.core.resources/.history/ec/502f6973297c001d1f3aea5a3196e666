@@ -1,0 +1,62 @@
+package com.masai.app.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Module.Car;
+
+@RestController
+public class MyController {
+
+	List<Car>cars =new ArrayList<>();
+	
+	       @PostConstruct
+	       public void initmethod() {
+	    	   
+	    	   cars.add(new Car("MH15 Sl8765","Maruti Suzuki", 500000));
+	    	   cars.add(new Car("MH12 Sl7777","Maruti Suzuki", 650000));
+	    	   cars.add(new Car("MH03 Sl421","Maruti Suzuki", 457000));
+	    	   cars.add(new Car("MH12 Sl7665","Maruti Suzuki", 340000));
+	    	
+	    	   
+	       }
+	       
+	       
+	       @PostMapping("/Cars")
+	       public List<Car> GetAllCar(){
+	    	   
+	    	   return cars;
+	       }
+	
+	       @PostMapping("/Cars")
+	        public Car getCarBYNumber(@RequestParam("CN") String Cnumber ) {
+	    	   Car car1=null;
+	    	   
+	    	   for(Car car:cars) {
+	    		   
+	    		   if(car.getCarNumber().equals(Cnumber)) {
+	    			   car1=car;
+	    			   
+	    		   }   
+	    	   }
+	    	   return car1;
+	       }
+	       
+	 
+	        @PostMapping("/Car")
+	        public Car getcar(@RequestBody Car car) {
+	        	
+	        	return car;
+	        	
+	        }
+	 
+}

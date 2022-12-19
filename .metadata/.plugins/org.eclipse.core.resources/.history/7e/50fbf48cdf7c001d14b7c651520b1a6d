@@ -1,0 +1,17 @@
+package com.masai.app.Service;
+
+
+
+import com.masai.app.Module.Student;
+
+public interface StudentService {
+
+	// supplied student do not have roll number retrun student with roll number
+	public  Student registeredStdent(Student student);
+	
+	public Student getStudentById(Integer roll);
+	
+	
+	
+	
+}

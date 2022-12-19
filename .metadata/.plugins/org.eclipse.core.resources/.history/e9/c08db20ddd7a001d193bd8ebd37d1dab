@@ -1,0 +1,54 @@
+package com.masai.app.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Module.Account;
+import com.masai.app.Module.AccountDTO;
+import com.masai.app.Module.Customer;
+import com.masai.app.service.CustomerService;
+
+@RestController
+public class MyController {
+
+	@Autowired
+	public CustomerService customerService;
+	
+	
+
+	@PostMapping("/registerCustomer")
+	public Customer  registerCustomer(@RequestBody Customer customer) {
+		 
+		Customer customer2=customerService.registerCustomer(customer); 
+		
+		return customer2;
+	}
+	
+	
+	@GetMapping("/getCustomerById/{customerId}")
+	private Customer getCustomerById(@PathVariable("customerId") Integer customerId) {
+		
+		Customer Customer=customerService.getCustomerById(customerId);		
+		return Customer;
+	}
+    
+	@GetMapping("/loginCustomer/{email}/{password}")
+	private Customer loginCustomer(@PathVariable("email") String email,@PathVariable("password")String password) {
+		
+		Customer Customer=customerService.loginCustomer(email, password);
+		return Customer;
+	}
+	
+	
+	@GetMapping("/updateCustomerPassword/{email}/{oldpassword}/{newPassword}")
+	private Customer updateCustomerPassword(@PathVariable("email") String email,@PathVariable("oldpassword")String oldpassword ,@PathVariable("newPassword") String newPassword) {
+		
+		Customer Customer=customerService.updateCustomerPassword(email, oldpassword,newPassword);
+		return Customer;
+	}
+
+}

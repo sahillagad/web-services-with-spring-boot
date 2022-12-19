@@ -1,0 +1,47 @@
+package com.masai.app.Module;
+
+import java.time.LocalDateTime;
+
+public class InvalideDateException{
+
+	
+	 private LocalDateTime dateTime;
+	 private String detail;
+	 private String path;
+	public InvalideDateException(LocalDateTime dateTime, String detail, String path) {
+		super();
+		this.dateTime = dateTime;
+		this.detail = detail;
+		this.path = path;
+	}
+	public InvalideDateException() {
+		super();
+	}
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
+	}
+	public String getDetail() {
+		return detail;
+	}
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+	public String getPath() {
+		return path;
+	}
+	public void setPath(String path) {
+		this.path = path;
+	}
+	@Override
+	public String toString() {
+		return "InvalideDateException [dateTime=" + dateTime + ", detail=" + detail + ", path=" + path + "]";
+	}
+	
+	
+	 
+	
+	
+}

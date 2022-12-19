@@ -1,0 +1,65 @@
+package com.masai.app.Compliler;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Module.Student;
+
+@RestController
+public class MyController {
+
+	
+	List<Student> students=new ArrayList<>();
+	
+	@PostConstruct
+	public void addStudent() {
+		students.add(new Student(1, "Ram", 567));
+		students.add(new Student(2, "Raj", 667));
+		students.add(new Student(3, "Rani", 300));
+		students.add(new Student(4, "Sahil", 435));
+		students.add(new Student(5, "Pramila", 760));	
+	}
+	 
+	@GetMapping("/student")
+	public List<Student> getAllStudent(){
+		return students;
+	}
+	
+	
+	@GetMapping("/student/{r}")
+	public Student getStudent(@PathVariable("r") Integer Roll) {
+		Student student=null;
+		
+		for(Student stud:students) {
+			
+			if(stud.getRoll()==Roll) {
+				
+				student=stud;
+				
+			}
+		}
+		
+		return student;
+	}
+	
+	
+	@GetMapping("/students/{r}/{n}/{m}")
+	public Student CreateStudent(@PathVariable("r") Integer Roll,
+			                                         @PathVariable("n")String Name,
+			                                         @PathVariable("m") Integer Marks) {
+		
+		
+		Student student=new Student(Roll, Name, Marks);
+		return student;
+	}
+	
+	
+	 
+}

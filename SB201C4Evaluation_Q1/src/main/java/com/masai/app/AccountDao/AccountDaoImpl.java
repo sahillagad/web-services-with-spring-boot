@@ -1,0 +1,96 @@
+package com.masai.app.AccountDao;
+
+import javax.persistence.EntityManager;
+
+import org.springframework.stereotype.Repository;
+
+import com.masai.app.Module.Account;
+import com.masai.app.Module.AccountDTO;
+import com.masai.app.Utility.EMUTILITY;
+
+@Repository
+public class AccountDaoImpl implements AccountDao {
+
+	@Override
+	public Account openAccount(Account acc) {
+	   Account account=null;
+		
+		EntityManager em=EMUTILITY.provideEntityManager();
+		
+		em.getTransaction().begin();
+		
+		em.persist(acc);
+		account=acc;
+		
+		em.getTransaction().commit();
+	
+		
+		return account;
+	}
+
+	@Override
+	public Account closeAccount(Integer accno) {
+		Account acc=null;
+		EntityManager em=EMUTILITY.provideEntityManager();
+		Account account= em.find(Account.class,accno);
+		if(account!=null) {
+			
+			
+			em.remove(account);
+			acc=account;
+		}
+		
+		return acc;
+	}
+
+	@Override
+	public Account depositAmount(Integer accno, Integer amount) {
+    
+		Account account=null;
+		
+		EntityManager em=EMUTILITY.provideEntityManager();
+	   account= em.find(Account.class,accno);
+		if(account!=null) {
+		
+			account.setBalance((account.getBalance()+amount));
+		
+		}
+		return account;
+	}
+
+	@Override
+	public Account withdrawAmount(int accno, Integer amount) {
+		Account account=null;
+		
+		EntityManager em=EMUTILITY.provideEntityManager();
+	   account= em.find(Account.class,accno);
+		if(account!=null) {
+		
+			if(account.getBalance()>=amount) {
+			account.setBalance((account.getBalance()-amount));
+		
+			}
+			
+		}
+		return account;
+	}
+
+	@Override
+	public String transferAmount(AccountDTO dto) {
+		String result="Amount is not Transfer";
+		EntityManager em=EMUTILITY.provideEntityManager();
+
+		
+	     Account  srcAccount = em.find(Account.class,dto.getSrcAccno());
+	     Account  desAccno = em.find(Account.class,dto.getDesAccno());
+	     
+	     if(srcAccount!=null && desAccno!=null ) {
+	    	 result="Amount transfer Successfully..";
+	     }
+	     
+	     
+	     
+		return result;
+	}
+
+}

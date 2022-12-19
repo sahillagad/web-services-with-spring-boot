@@ -1,0 +1,43 @@
+package com.masai.app.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Module.Product;
+
+@RestController
+public class MyControll {
+
+List<Product> products=new ArrayList<>();
+
+@PostConstruct
+public void initMethod() {
+	
+	products.add(new Product(1,"P1",456));
+	products.add(new Product(2,"P2",556));
+	products.add(new Product(3,"P3",300));
+	products.add(new Product(4,"P4",543));
+	products.add(new Product(5,"P5",885));
+	
+	
+}
+
+
+
+@RequestMapping("/product")
+public  Product getProduct(@RequestParam("Id") Integer id, @RequestParam("Name") String name ,@RequestParam("Price")Integer price) {
+	
+	Product product=new Product(id, name, price);
+
+	
+	return product;
+	
+}
+
+ }

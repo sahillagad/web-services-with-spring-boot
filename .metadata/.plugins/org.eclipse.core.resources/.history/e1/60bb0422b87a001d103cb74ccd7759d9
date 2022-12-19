@@ -1,0 +1,77 @@
+package com.masai.app.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Module.Product;
+
+
+@RestController
+public class MyController {
+
+
+	 List<Product> list=new ArrayList<>();
+	
+	@PostConstruct
+	public void initMethod() {
+		
+		list.add(new Product(1,"LUX", 100));
+		list.add(new Product(2, "fff", 370));
+		list.add(new Product(3,"hhg", 140));
+		list.add(new Product(4, "dds", 370));
+		list.add(new Product(5,"assa", 100));
+		list.add(new Product(6, "eawq", 370));
+		
+		
+	}
+
+	
+	@GetMapping("/product")
+	 public Product getProduct(@RequestParam("PID") Integer ProductId) {
+		Product product1=null;
+		
+		
+	 for(Product product:list) {
+		 
+		 if(product.getProductId()==ProductId ) {
+			 
+			 product1=product;
+			 
+		 }
+	 }
+	 return product1;
+		
+	}
+	
+	
+	@GetMapping("/productsbyname")
+	public Product addproduct(@RequestParam("PID") Integer ProductID ,@RequestParam("Pname") String productName) {
+
+		
+		Product product1=null;
+		
+		
+	 for(Product product:list) {
+		 
+		 if(product.getProductId()==ProductID  && product.getProductName().equals(productName)) {
+			 
+			 product1=product;
+			 
+		 }
+	 }
+	 return product1;
+		
+		
+		
+		
+	}
+	
+}

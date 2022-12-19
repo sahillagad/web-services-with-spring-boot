@@ -1,0 +1,15 @@
+package com.masai.app.Dao;
+
+import com.masai.app.Module.Student;
+
+public  interface StudentDao{
+
+	
+	public  Student registeredStdent(Student student);
+	
+	
+	
+	
+}
+
+

@@ -1,0 +1,28 @@
+package com.masai.app.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.masai.app.Dao.StudentDao;
+import com.masai.app.Module.Student;
+
+@Service
+public class StudentDaoImpl implements StudentService{
+
+	
+	@Autowired
+	private StudentDao dao;
+
+	@Override
+	public Student registeredStdent(Student student) {
+	 
+		Student student1= dao.registeredStdent(student);
+	  return student1;
+	}
+	
+     
+	 
+	
+
+
+}

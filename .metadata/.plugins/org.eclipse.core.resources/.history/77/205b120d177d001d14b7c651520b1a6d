@@ -1,0 +1,5 @@
+package com.masai.app.Service;
+
+public class ProductServiceImpl implements ProductService  {
+
+}

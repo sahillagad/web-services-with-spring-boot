@@ -1,0 +1,12 @@
+package com.masai.app.Controller;
+
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class MyController {
+
+	
+	public List<E>
+}

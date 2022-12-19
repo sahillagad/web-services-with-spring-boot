@@ -1,0 +1,22 @@
+package com.masai.app.Dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.masai.app.Module.Student;
+
+@Repository
+public class StudentDaoImpl implements StudentDao {
+
+	@Override
+	public Student registeredStdent(Student student) {
+		
+		
+		
+		
+		
+	}
+
+	
+	
+	
+}

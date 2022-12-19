@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.masai.app.Module&apos; to &apos;SpringBootRestfullWebService7-1/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;SpringBootRestfullWebService7&apos;&#x0D;&#x0A;- Destination element: &apos;SpringBootRestfullWebService7-1/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;SpringBootRestfullWebService7/src/main/java/com.masai.app.Module&apos;" description="Copy package" destination="=SpringBootRestfullWebService7-1/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.masai.app.Module" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1670908862549" version="1.0"/>
+</session>

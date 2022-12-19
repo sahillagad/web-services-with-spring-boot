@@ -1,0 +1,40 @@
+package com.masai.app.Controller;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.function.ServerRequest.Headers;
+
+import com.masai.app.Module.Student;
+
+@RestController
+public class MyController {
+
+
+	 
+	@PostMapping("/Students")
+	public ResponseEntity<String> registerStudent(@RequestBody Student student){
+   
+		 HttpHeaders headers=new HttpHeaders();
+		 headers.add("User", "Sahil");
+		 headers.add("Admin", "Ratan");
+		 headers.add("MethodName", "registerStudent");
+		 
+		
+				 
+		
+		String result="Data Student is  Add....";
+		
+		ResponseEntity<String> respone=new ResponseEntity<String>(result,headers,HttpStatus.ACCEPTED);
+    	 	
+	return respone;
+	}
+	
+	 
+	
+	
+}

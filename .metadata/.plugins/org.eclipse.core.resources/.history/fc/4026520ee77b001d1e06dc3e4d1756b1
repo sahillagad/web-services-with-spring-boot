@@ -1,0 +1,95 @@
+package com.masai.app.Controller;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Module.Product;
+
+@RestController
+public class MyControll {
+
+List<Product> products=new ArrayList<>();
+
+@PostConstruct
+public void initMethod() {
+	
+	products.add(new Product(1,"P1",456));
+	products.add(new Product(2,"P2",556));
+	products.add(new Product(3,"P3",300));
+	products.add(new Product(4,"P4",543));
+	products.add(new Product(5,"P5",885));
+	
+	
+}
+
+
+
+@RequestMapping("/product")
+public  Product getProduct(@RequestParam("Id") Integer id, @RequestParam("Name") String name ,@RequestParam("Price")Integer price) {
+	
+	Product product=new Product(id, name, price);
+
+	
+	return product;
+	
+}
+
+//http://localhost:8888/products?Id=12&Price=654&Name=Lux
+//http://localhost:8888/products?Name=Lux
+//http://localhost:8888/products?Id=12&Name=Lux
+//http://localhost:8888/products?Price=654&Name=Lux
+@RequestMapping("/products")
+public Product getProduct1(@RequestParam(value =   "Id",required = false)Integer id ,@RequestParam("Name") String  name,@RequestParam(value = "Price",required = false)Integer price ) {
+	Product  product=new Product(id, name, price);
+	return product;
+}
+
+@RequestMapping("/productById")
+public Product getProductById(@RequestParam("Id") Integer Id) {
+	Product product1=null;
+	for(Product product:products ) {
+	 if(product.getPid()==Id) {
+		 product1=product; 	
+	}	
+	}
+	return product1;
+}
+
+//http://localhost:8888/productByName?name=P1
+@RequestMapping("/productByName")
+public Product FindByNameproduct(@RequestParam() String name) {
+	Product p=null;
+	
+	for(Product product:products) {
+		
+		if(product.getName().equals(name)){
+			
+			p=product;
+		}
+		
+	}
+	
+	return p;
+}
+
+//http://localhost:8888/productByNameANDBy/12?name=Lux&Price=877
+//http://localhost:8888/productByNameANDBy/12?Price=877
+@RequestMapping("/productByNameANDBy/{Id}")
+public Product productByNameANDBy(@PathVariable("Id")  Integer ProductId ,@RequestParam(name = "name" ,required = false)String Productname,@RequestParam() Integer Price ) {
+	
+	Product product=new Product(ProductId, Productname, Price);
+	return product;
+	
+}
+
+ 
+
+ }

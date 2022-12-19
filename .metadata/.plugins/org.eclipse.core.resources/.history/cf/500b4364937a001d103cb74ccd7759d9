@@ -1,0 +1,21 @@
+package com.masai.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+
+import com.masai.app.Module.Student;
+
+@SpringBootApplication
+public class SpringBootRestfullWebService4NestedJson1Application {
+
+	public static void main(String[] args) {
+	ApplicationContext ap=	SpringApplication.run(SpringBootRestfullWebService4NestedJson1Application.class, args);
+	 
+   Student student=	ap.getBean(Student.class);
+System.out.println(student);
+   
+	}
+	
+
+}

@@ -1,0 +1,55 @@
+package com.masai.app.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.masai.app.Moduler.Product;
+
+@RestController
+public class MyController {
+    
+	List<Product> products=new ArrayList<>();
+	
+	@PostConstruct
+	public void initMethod() {
+		
+		products.add(new Product(1,"P1", 300));
+		products.add(new Product(2,"P1", 300));
+		products.add(new Product(3,"P1", 300));
+		products.add(new Product(4,"P1", 300));
+		products.add(new Product(5,"P1", 300));
+		
+	}
+	
+	
+	
+	@RequestMapping("/products")
+	public List<Product> getAllProduct(){
+		
+		return products;
+	}
+	
+	
+	@GetMapping("/product/{Id}")
+	public Product getProductById(@PathVariable("Id") Integer id) {
+		Product product=null;
+		
+		for(Product prod:products) {
+			
+			if(prod.getProductId()==id) {
+				
+				product=prod; 
+			}
+			
+		}
+		return product;
+	}
+	
+}
